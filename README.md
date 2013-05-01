@@ -63,6 +63,7 @@ Now to a certain extent, we need to teach people to generalize, but if you teach
 Too often people come to program with the ability to copy code and get it working (and that isn't anything to denigrate, because it's not simple), but lack the understanding of how to think about things.  
 
 Tail recursion
+--------------
 
 okay, now recursion is mostly used to go backward without an explicit stack.  But it's possible to programmatically turn a recursive function, which is memory intensive, into an interative function.  A compiler can do this fairly easily for a specific type of function, a tail recursive function. 
 A tail recursive function [wikipedia](https://en.wikipedia.org/wiki/Tail_recursion) that might be used to count the characters in a c string looks like this: 
