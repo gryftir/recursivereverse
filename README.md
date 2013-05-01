@@ -76,7 +76,7 @@ okay, now recursion is mostly used to go backward without an explicit stack.  Bu
 A tail recursive function [wikipedia](https://en.wikipedia.org/wiki/Tail_recursion) that might be used to count the characters in a c string looks like this: 
 
     int charcount(char * array, int size) {
-        if (*array == '\n')    
+        if (*array == '\0')    
             return size;
         return charcount(array + 1, size + 1); 
     }
@@ -87,7 +87,7 @@ transformed to an interative call you get:
 
     int charcount(char * array) {
         int size = 0;
-        while (*array != '\n') {
+        while (*array != '\0') {
           array++;
           size++;
         }
@@ -95,7 +95,20 @@ transformed to an interative call you get:
     }
 pretty simple.  Now, can you create a tail recursive way to reverse a linked list?
 
+    NODE * tailrecursereverse(NODE * current, NODE * append){
+      NODE * next;
+      if (current == append)
+        return current;
+      if (current->next == NULL) {
+		    current->next = append;
+		    return current;
+	    }
+	    next = current->next;
+	    current->next = append;
+	    return tailrecursereverse(next, current);
+    }
 
+ 
 
 
 
