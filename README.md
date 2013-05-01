@@ -133,7 +133,7 @@ Now, you can make an interative version the same way.
     }
 
 
-
+Copyright Lawrence Siebert 2013.  See COPYING
     
 
  
