@@ -91,10 +91,15 @@ NODE * pushNode (NODE * list, int i){
 }
 
 void printList (NODE * first){
+	NODE * list = first;
 	while (first)
 	{
-		printf ("%d\n", first->num);
-		first = first->next;
+		printf ("%d\n", list->num);
+		list = list->next;
+		//walk the list by twos, if there is a circular list, will eventually stop, though may repeat once
+		first = first->next->next;
+		if (list == first)
+			return;
 	}
 	return;
 }
