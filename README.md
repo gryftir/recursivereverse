@@ -71,7 +71,7 @@ A tail recursive function [wikipedia](https://en.wikipedia.org/wiki/Tail_recursi
         if (*array == '\n')    
             return size;
         return charcount(array + 1, size + 1); 
-}
+    }
 
 the recursive call is the last call made.  It's initially called with a size of 0
 
@@ -90,7 +90,7 @@ pretty simple.  Now, can you create a tail recursive way to reverse a linked lis
 
 
 
-}
+
 
 
 
