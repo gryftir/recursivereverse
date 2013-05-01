@@ -10,8 +10,8 @@ Beginning
 
 recursively reverse a linked list.
 
-I'm rewriting this, to discuss tail recursive functions and a few other things.  This is grew out of a thread on Hacker News.
-[comment here](https://news.ycombinator.com/item?id=5477498)
+I'm rewriting this, to discuss tail recursive functions and a few other things.  This is grew out of a comment I made on Hacker News.
+[original comment here](https://news.ycombinator.com/item?id=5477498)
 
 Recursion isn't hard, it's just not taught correctly.  It's fairly easy to break it down into rules, and get people thinking about it.
 
