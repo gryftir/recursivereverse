@@ -72,8 +72,9 @@ Too often people come to program with the ability to copy code and get it workin
 Tail recursion
 --------------
 
-okay, now recursion is mostly used to go backward without an explicit stack.  But it's possible to programmatically turn a recursive function, which is memory intensive, into an interative function.  A compiler can do this fairly easily for a specific type of function, a tail recursive function. 
-A tail recursive function [wikipedia](https://en.wikipedia.org/wiki/Tail_recursion) that might be used to count the characters in a c string looks like this: 
+okay, now recursion is mostly used to go backward without an explicit stack.  But it's possible to programmatically turn a recursive function, which is potentially memory intensive, into an interative function.  A compiler can do this fairly easily for a specific type of function, a tail recursive function. 
+A tail recursive function [wikipedia](https://en.wikipedia.org/wiki/Tail_recursion) is one that has the recursive call in the return statement.  Nothing happens after the recursive call except the final value is passed back.
+An example that might be used to count the characters in a c string looks like this: 
 
     int charcount(char * array, int size) {
         if (*array == '\0')    
@@ -81,7 +82,9 @@ A tail recursive function [wikipedia](https://en.wikipedia.org/wiki/Tail_recursi
         return charcount(array + 1, size + 1); 
     }
 
-the recursive call is the last call made.  It's initially called with a size of 0
+the recursive call is the last call made.  It's initially called with a size of 0.
+
+Notice that we are using a second parameter, which we initialize to 0.
 
 transformed to an interative call you get:
 
@@ -93,20 +96,44 @@ transformed to an interative call you get:
         }
         return size;
     }
-pretty simple.  Now, can you create a tail recursive way to reverse a linked list?
+Pretty simple. since we can keep track of the value inside the loop, we don't need a second parameter.
+Now, can you create a tail recursive way to reverse a linked list?
+
+
 
     NODE * tailrecursereverse(NODE * current, NODE * append){
       NODE * next;
       if (current == append)
         return current;
       if (current->next == NULL) {
-		    current->next = append;
-		    return current;
-	    }
-	    next = current->next;
-	    current->next = append;
-	    return tailrecursereverse(next, current);
+        current->next = append;
+        return current;
+      }
+      next = current->next;
+      current->next = append;
+      return tailrecursereverse(next, current);
     }
+
+Now, you can make an interative version the same way.
+
+    NODE * interativetail(NODE * current){
+    	NODE * next;
+    	NODE * append = NULL;
+    	if (current == append)
+    		return current;
+    	while (current->next != NULL) {
+    		next = current->next;
+    		current->next = append;
+    		append = current;
+                current = next;
+      	}
+    	current->next = append;
+    	return current;
+    }
+
+
+
+    
 
  
 
