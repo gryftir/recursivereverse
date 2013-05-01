@@ -1,6 +1,13 @@
 recursivereverse
 ================
 
+skip to [tail recursion](#tail-recursion)
+
+Beginning
+---------
+
+
+
 recursively reverse a linked list.
 
 I'm rewriting this, to discuss tail recursive functions and a few other things.  This is grew out of a thread on Hacker News.
