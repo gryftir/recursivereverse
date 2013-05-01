@@ -8,34 +8,35 @@ Beginning
 
 
 
-recursively reverse a linked list.
+I'm going to be talking aboutrecursively reverse a linked list.  IRL you would be more likely, in c at least, to use recursion for more complex data structures such as trees, but a linked list is a good example, and you might get a discussion of it on an interview.
 
-I'm rewriting this, to discuss tail recursive functions and a few other things.  This is grew out of a comment I made on Hacker News.
+I've rewritten this, to discuss tail recursive functions and a few other things.  The original version  grew out of a comment I made on Hacker News.
 [original comment here](https://news.ycombinator.com/item?id=5477498)
 
-Recursion isn't hard, it's just not taught correctly.  It's fairly easy to break it down into rules, and get people thinking about it.
+Recursion isn't hard, it's just not taught correctly.  It's fairly easy to break it down into rules and patterns, and get people thinking about it.
 
-And then people memorize how to do stuff, instead of learning it from priniciples.
+I see people memorize how to do stuff, instead of learning it from priniciples, and that's just not helpful.
 
-Take the classic question, recursively reverse a linked list.  
+Let's Take the classic question, recursively reverse a linked list.  
 
-You will see a lot of people making false starts, or trying to reverse the list in some way like they would reverse an array, or even repeatedly walking the list to the end.
+You will see a lot of people making false starts, or trying to reverse the list in some way like they would reverse an array, or even repeatedly walking the list to the end. *Yikes*
 
 But if you understand some simple rules about recursion, it's fairly easy to figure out how to do this on the fly.  And that is so much better then memorization, because you can explain why you are doing things.
 
-First you are reversing, so you're moving backward, which means you calls your function, then do assignments.  If you were doing something moving forwards, like printing in order, you'd print first, then call the function.  
+First you are reversing, so an easy way to use recursion is moving backward, which means you calls your function, then do assignments.  If you were doing something moving forwards, like printing in order, you'd print first, then call the function. Note, I totally break this rule in tail recursion, but the tail recursion is a more complex function.
 
 Next we need to worry about the end, and the beginning.  
 
-Let's start with the beginning, which happens after we have recursively walked the list. 
+Let's start with the beginning, which in this case happens after we have recursively walked the list. We aren't doing anything until after the recursive call. We want to walk to the last node before null, and we need a place to store what we return.  so assuming we have something like this in c  
 
-Now, we want to walk to the last node before null, and we need a place to store what we return.  so assuming we have something like this in c  'node * recursivereverse(node * current)' and a node structure with next as the next link (we never touch our data)
+`NODE * recursivereverse(NODE * current)` 
+and a NODE structure with next as the next link (we never touch our data, so you can specify it in any way).
 
 Our test is
 
 
     if (current->next) {
-        node * newbeginning = recursivereverse(current->next);
+        NODE * newbeginning = recursivereverse(current->next);
         else
           return current;
     //some assignments go here;
