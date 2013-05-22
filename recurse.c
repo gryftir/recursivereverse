@@ -20,7 +20,10 @@ void printList (NODE * first);
 NODE * tailrecursereverse(NODE * current, NODE * next);
 
 NODE * interativetail(NODE * current);
+void freeMem(NODE ** current);
 
+
+//main
 int main (int argc, char * argv[]){
 int count;
 NODE * list = makenode(0);
@@ -28,21 +31,32 @@ for (count = 1; count <= 10; count++)
 	list = pushNode(list,count);
 
 
-
 printf("before reverse\n");
 printList(list);
 list = recursiveReverse(list);
-printf ("after reverse\n");
+printf ("after recursive reverse\n");
 printList(list);		
-printf("now tailrecursereverse\n");
+printf("now we use the tailrecursereverse\n");
 list = tailrecursereverse(list, NULL);
 printList(list);
-printf("interative reversal based on tail reversal\n");
+printf("now interative reversal based on tail reversal\n");
 list = interativetail(list);
 printList(list);
-
-
+freeMem(&list);
 	return 0;
+}
+
+
+void freeMem (NODE ** current) {
+NODE * walker, * front = *current;
+
+while (current) {
+	walker = front;
+	front = front->next;
+	free (walker);
+}
+*current = NULL;
+	return;
 }
 
 
@@ -86,31 +100,30 @@ NODE * makenode (int i){
 
 NODE * pushNode (NODE * list, int i){
 	NODE * new = makenode(i);
-	new->next = list;
+	new->next = list;;
 	return new;
 }
 
 void printList (NODE * first){
-	NODE * list = first;
 	while (first)
 	{
-		printf ("%d\n", list->num);
-		list = list->next;
-		//walk the list by twos, if there is a circular list, will eventually stop, though may repeat once
-		first = first->next->next;
-		if (list == first)
-			return;
+		printf ("%d\n", first->num);
+		first = first->next;
 	}
 	return;
 }
 
 NODE * recursiveReverse(NODE * current){
-NODE * next;
-	if (current->next)
-next = recursiveReverse(current->next);
-	else
+	NODE * next;
+	if (!current)
 		return current;
-current->next->next = current;
-current->next = NULL;
-return next;
+	if (current->next) {
+		next = recursiveReverse(current->next);
+	}
+	else {
+		return current;
+	}
+	current->next->next = current;
+	current->next = NULL;
+	return next;
 }
