@@ -34,9 +34,9 @@ and a NODE structure with next as the next link (we never touch our data, so you
 
 Our test is
 
-
+ 		NODE * newbeginning;
     if (current->next) {
-        NODE * newbeginning = recursivereverse(current->next);
+        newbeginning = recursivereverse(current->next);
         else
           return current;
     //some assignments go here;
@@ -83,9 +83,18 @@ An example that might be used to count the characters in a c string looks like t
         return charcount(array + 1, size + 1); 
     }
 
+
 the recursive call is the last call made.  It's initially called with a size of 0.
 
 Notice that we are using a second parameter, which we initialize to 0.
+
+we could simplify this with the following
+
+    int charcount(char * array) {
+     	if (*array=='\0')
+				return 0;
+			return 1 + charcount(array + 1);
+    }
 
 transformed to an interative call you get:
 
@@ -96,6 +105,15 @@ transformed to an interative call you get:
           size++;
         }
         return size;
+    }
+
+You could even do;
+
+    int charcount (char * array) {
+		    char * walker = array;
+				while (*walker != '\0') 
+				  walker++;
+			 	return (int)(walker - array);
     }
 Pretty simple. since we can keep track of the value inside the loop, we don't need a second parameter.
 Now, can you create a tail recursive way to reverse a linked list?
