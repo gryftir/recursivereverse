@@ -57,6 +57,7 @@ Easy way to deal with it is to just assign the next of the current node to NULL,
 
 
 so we add 
+
     current->next->next = current;
     current->next = NULL;
 
