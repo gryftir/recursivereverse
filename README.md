@@ -8,7 +8,7 @@ Beginning
 
 
 
-I'm going to be talking aboutrecursively reverse a linked list.  IRL you would be more likely, in c at least, to use recursion for more complex data structures such as trees, but a linked list is a good example, and you might get a discussion of it on an interview.
+I'm going to be talking about recursively reverse a linked list.  IRL you would be more likely, in c at least, to use recursion for more complex data structures such as trees, but a linked list is a good example, and you might get a discussion of it on an interview.
 
 I've rewritten this, to discuss tail recursive functions and a few other things.  The original version  grew out of a comment I made on Hacker News.
 [original comment here](https://news.ycombinator.com/item?id=5477498)
@@ -74,7 +74,7 @@ Too often people come to program with the ability to copy code and get it workin
 Tail recursion
 --------------
 
-okay, now recursion is mostly used to go backward without an explicit stack.  But it's possible to programmatically turn a recursive function, which is potentially memory intensive, into an interative function.  A compiler can do this fairly easily for a specific type of function, a tail recursive function. 
+Recursion is mostly used to go backward without an explicit stack (or to otherwise split a process up into smaller and smaller parts).  But it's possible to programmatically turn a recursive function, which is potentially memory intensive, into an interative function.  A compiler can do this fairly easily for a specific type of function, a tail recursive function. 
 A tail recursive function [wikipedia](https://en.wikipedia.org/wiki/Tail_recursion) is one that has the recursive call in the return statement.  Nothing happens after the recursive call except the final value is passed back.
 An example that might be used to count the characters in a c string looks like this: 
 
